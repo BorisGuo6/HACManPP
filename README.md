@@ -98,7 +98,7 @@ pip install 'cython<3'
 sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libglew-dev patchelf
 
 ## Add the following three path to the ~/.bashrc 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/yilinwu/.mujoco/mujoco210/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/$USER/.mujoco/mujoco210/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
 export CPATH=$CONDA_INCLUDE/prefixd
 
