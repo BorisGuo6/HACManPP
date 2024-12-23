@@ -33,6 +33,7 @@ Please feel free to open an issue or email us at {yilinwu, bowenj}@andrew.cmu.ed
   - [Running Experiments of HACMAN++ On Robosuite Env](#running-experiments-of-hacman-on-robosuite-env)
   - [Running Experiments of HACMan++ on HACMan++DoubleBinEnv](#running-experiments-of-hacman-on-hacmandoublebinenv)
   - [Evaluation](#evaluation)
+  - [Checkpoint](#checkpoint)
 - [Development](#development)
   - [Code Structure](#code-structure)
     - [HACMan++-wrapped Environments](#hacman-wrapped-environments)
@@ -252,6 +253,29 @@ LD_PRELOAD="" MUJOCO_PY_FORCE_CPU=1 python scripts/run.py --name default --env h
 To render the videos, add the following arguments
 ```
 --record_video 
+```
+
+To change the evaluation configuration to be different than the saved configuration of the checkpoint, add the ```--override_args``` argument. For example to change the max_episode_steps:
+
+```--override_args max_episode_steps --max_episode_steps 30```
+
+## Checkpoint
+
+To reproduce the HACMan++BinDoubleEnv results in the paper, we provide the following checkpoints:
+
+```https://cmu.box.com/s/scvl0wd5jf3qx8z52y4rfnbr71pq82s0```
+
+You can download it and save in the logs/hacman folder.
+
+The training curve of the checkpoint is attached:
+<p align="center">
+  <img src="docs/training_curve.png" width="500">
+</p>
+
+To reproduce the results (bar plot) in the paper, we run with 3080 trials and the max episode length is 30. The success rate shown in the training curve is with episode length 10 and the number of trials are much smaller. The success rate with the following evaluation command is around 0.89. 
+
+```
+ CUDA_VISIBLE_DEVICES=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/run.py --name Exp4041-test_eval --env hacman --load_dirname logs/hacman --dirname results --ExpID 9090 --load_exp Exp4040 --eval 3080 --eval_n_envs 64 --override_args max_episode_steps --max_episode_steps 30
 ```
 
 # Development
