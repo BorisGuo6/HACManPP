@@ -43,7 +43,7 @@ class MultiActor(BasePolicy):
             normalize_images=normalize_images,
             squash_output=squash_output,
         )
-
+ 
         self.net_arch = net_arch
         self.features_dim = features_dim
         self.activation_fn = activation_fn
@@ -180,7 +180,8 @@ class MultiTD3Policy(TD3Policy):
         n_critics: int = 2,
         share_features_extractor: bool = False,
         num_primitives: int = None,
-    ):
+        squash_output: bool=True
+        ):
         self.num_primitives = num_primitives
         super().__init__(
             observation_space,
